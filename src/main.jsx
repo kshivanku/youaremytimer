@@ -184,6 +184,7 @@ function App() {
   const [earnings, setEarnings] = useState(0);
   const [ratingFeedback, setRatingFeedback] = useState(null);
   const [earningFeedback, setEarningFeedback] = useState(null);
+  const [taskFeedbackLine, setTaskFeedbackLine] = useState("");
   const [speechEnabled, setSpeechEnabled] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isBlinking, setIsBlinking] = useState(false);
@@ -193,6 +194,8 @@ function App() {
   const line =
     phase === "opening"
       ? `You are timer ${timerNumber}. Tell me when you're ready to get to work.`
+      : phase === "feedback"
+        ? taskFeedbackLine
       : `Timer ${timerNumber}, tell me when it is ${targetLabel}.`;
   const ready = phase !== "opening";
   const typedLine = useTypedText(line, ready ? 58 : 38);
@@ -324,6 +327,27 @@ function App() {
     return () => window.clearTimeout(timeout);
   }, [earningFeedback]);
 
+  useEffect(() => {
+    if (phase !== "feedback" || isTyping) {
+      return undefined;
+    }
+
+    const timeout = window.setTimeout(() => {
+      startNextTask();
+    }, 1100);
+
+    return () => window.clearTimeout(timeout);
+  }, [isTyping, phase]);
+
+  function startNextTask() {
+    const isFirstTask = taskCount === 0;
+    setTargetSeconds(getRandomSeconds(isFirstTask ? 5 : 5, isFirstTask ? 10 : 30));
+    setElapsedSeconds(0);
+    setTaskCount((currentCount) => currentCount + 1);
+    setSpeechEnabled(true);
+    setPhase("timing");
+  }
+
   function beginTask() {
     if (phase === "timing") {
       const isCorrect = elapsedSeconds === targetSeconds;
@@ -350,14 +374,13 @@ function App() {
           return currentEarnings - 1;
         });
       }
+
+      setTaskFeedbackLine(isCorrect ? "Good job" : "You can do better");
+      setPhase("feedback");
+      return;
     }
 
-    const isFirstTask = taskCount === 0;
-    setTargetSeconds(getRandomSeconds(isFirstTask ? 5 : 5, isFirstTask ? 10 : 30));
-    setElapsedSeconds(0);
-    setTaskCount((currentCount) => currentCount + 1);
-    setSpeechEnabled(true);
-    setPhase("timing");
+    startNextTask();
   }
 
   return (
@@ -425,11 +448,11 @@ function App() {
             <button className="ready-button" type="button" onClick={beginTask}>
               I'm ready
             </button>
-          ) : (
+          ) : isTiming ? (
             <button className="ready-button time-button" type="button" onClick={beginTask}>
               It's {targetLabel}
             </button>
-          )}
+          ) : null}
         </div>
       </div>
     </main>
