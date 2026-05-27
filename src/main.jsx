@@ -258,11 +258,13 @@ function App() {
       if (isCorrect) {
         setEarnings((currentEarnings) => currentEarnings + 10);
         setEarningFeedback(true);
+      } else {
+        setEarnings((currentEarnings) => Math.max(currentEarnings - 1, 0));
       }
     }
 
     const isFirstTask = taskCount === 0;
-    setTargetSeconds(getRandomSeconds(isFirstTask ? 5 : 5, isFirstTask ? 10 : 300));
+    setTargetSeconds(getRandomSeconds(isFirstTask ? 5 : 5, isFirstTask ? 10 : 30));
     setElapsedSeconds(0);
     setTaskCount((currentCount) => currentCount + 1);
     setSpeechEnabled(true);
