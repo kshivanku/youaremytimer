@@ -357,8 +357,8 @@ function App() {
   }, [isTyping, phase]);
 
   function startNextTask() {
-    const isFirstTask = taskCount === 0;
-    setTargetSeconds(getRandomSeconds(isFirstTask ? 5 : 5, isFirstTask ? 10 : 30));
+    const isEarlyTask = taskCount < 4;
+    setTargetSeconds(getRandomSeconds(5, isEarlyTask ? 10 : 30));
     setElapsedSeconds(0);
     setTaskCount((currentCount) => currentCount + 1);
     setSpeechEnabled(true);
