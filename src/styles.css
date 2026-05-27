@@ -486,33 +486,46 @@ button {
 
 .ready-button {
   min-width: min(100%, 172px);
-  min-height: 48px;
-  padding: 0 22px;
-  border: 3px solid rgba(255, 255, 255, 0.72);
-  border-radius: 0;
-  color: #ffffff;
-  background: transparent;
+  min-height: 52px;
+  padding: 0 28px;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.96);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.48) 11%, rgba(126, 132, 136, 0.34) 42%, rgba(18, 22, 24, 0.72) 48%, rgba(210, 217, 220, 0.36) 100%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.02) 28%, rgba(255, 255, 255, 0.22) 52%, rgba(255, 255, 255, 0.03) 72%, rgba(255, 255, 255, 0.18));
   box-shadow:
-    inset 0 0 0 2px rgba(0, 0, 0, 0.5),
-    inset 0 -5px 0 rgba(0, 0, 0, 0.42),
-    5px 5px 0 rgba(0, 0, 0, 0.58),
-    0 0 24px rgba(255, 255, 255, 0.08);
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.72),
+    inset 0 0 18px rgba(255, 255, 255, 0.16),
+    0 10px 18px rgba(0, 0, 0, 0.38),
+    0 0 22px rgba(255, 255, 255, 0.08);
   cursor: pointer;
   text-transform: uppercase;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.9),
+    0 0 10px rgba(255, 255, 255, 0.22);
   transition:
     background 180ms ease,
     border-color 180ms ease,
+    box-shadow 180ms ease,
     transform 180ms ease;
 }
 
 .ready-button:hover {
-  border-color: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 1);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)),
-    rgba(255, 255, 255, 0.02);
-  transform: translate(-1px, -1px);
+    linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.58) 12%, rgba(150, 156, 160, 0.42) 42%, rgba(20, 24, 26, 0.74) 48%, rgba(234, 240, 242, 0.46) 100%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.03) 28%, rgba(255, 255, 255, 0.28) 52%, rgba(255, 255, 255, 0.04) 72%, rgba(255, 255, 255, 0.22));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.72),
+    inset 0 0 22px rgba(255, 255, 255, 0.2),
+    0 12px 20px rgba(0, 0, 0, 0.42),
+    0 0 28px rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
 }
 
 .ready-button:focus-visible {
