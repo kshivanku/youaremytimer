@@ -308,7 +308,8 @@ function App() {
           <path className="frame-main" d="M0 34H14L50 0L86 34H100V140H0V34Z" />
           <path className="frame-inner" d="M5 39H17L50 8L83 39H95V135H5V39Z" />
           <path className="frame-echo" d="M20 34L50 6L80 34" />
-          <path className="frame-finial" d="M50 0V-8M46 -3H54M48 -6L50 -10L52 -6" />
+          <circle className="frame-finial" cx="50" cy="-7" r="3.2" />
+          <path className="frame-finial-stem" d="M50 -3.8V0" />
           <path className="frame-ornament" d="M8 34V27H14M92 34V27H86M0 51H7M93 51H100M0 124H8M92 124H100" />
           <path className="frame-base" d="M14 132H38M62 132H86M23 136H77" />
         </svg>
