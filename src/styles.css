@@ -908,7 +908,7 @@ button {
     height: calc(100svh - 28px);
     max-height: calc(100svh - 28px);
     min-height: 0;
-    padding: clamp(82px, 12svh, 112px) 22px 20px;
+    padding: clamp(64px, 9svh, 88px) 22px 20px;
   }
 
   .rating-display,
@@ -931,12 +931,12 @@ button {
   }
 
   .encounter {
-    justify-content: end;
+    justify-content: center;
   }
 
   .agent-line {
-    min-height: 118px;
-    margin-top: 30px;
+    min-height: 108px;
+    margin-top: 24px;
   }
 
   .timer-readout {
