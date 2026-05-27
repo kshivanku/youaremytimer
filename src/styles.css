@@ -440,8 +440,8 @@ button {
   width: min(100%, 280px);
   min-height: 68px;
   margin-top: clamp(4px, 1.5vh, 18px);
-  border: 2px solid rgba(64, 255, 154, 0.34);
-  color: rgba(64, 255, 154, 0.94);
+  border: 0;
+  color: rgba(255, 255, 255, 0.94);
   background: transparent;
   font-variant-numeric: tabular-nums;
   font-size: clamp(2rem, 7vw, 4.2rem);
@@ -449,7 +449,7 @@ button {
   line-height: 1;
   letter-spacing: 0;
   text-shadow:
-    0 0 14px rgba(64, 255, 154, 0.48),
+    0 0 14px rgba(255, 255, 255, 0.32),
     3px 3px 0 rgba(0, 0, 0, 0.7);
 }
 
@@ -487,15 +487,15 @@ button {
 }
 
 .ready-button:hover {
-  border-color: rgba(64, 255, 154, 0.82);
+  border-color: rgba(255, 255, 255, 0.92);
   background:
-    linear-gradient(180deg, rgba(64, 255, 154, 0.14), rgba(255, 255, 255, 0.06)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)),
     rgba(255, 255, 255, 0.02);
   transform: translate(-1px, -1px);
 }
 
 .ready-button:focus-visible {
-  outline: 3px solid rgba(64, 255, 154, 0.85);
+  outline: 3px solid rgba(255, 255, 255, 0.85);
   outline-offset: 5px;
 }
 

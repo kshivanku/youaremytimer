@@ -5,7 +5,7 @@ import eyesOpen from "../assets/eyes-open.png";
 import eyesShut from "../assets/eyes-shut.png";
 import skyLoop from "../assets/Sunny_cloudy_sky_loop.mp4";
 
-const openingLine = "You are my time keeper. Tell me when you're ready to keep time.";
+const openingLine = "You are a timer. Tell me when you're ready to keep time.";
 const humanVoiceHints = [
   "samantha",
   "daniel",
