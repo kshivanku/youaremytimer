@@ -210,7 +210,7 @@ function App() {
   const targetLabel = targetSeconds ? formatDuration(targetSeconds) : "";
   const line =
     phase === "opening"
-      ? `You are timer ${timerNumber}. Tell me when you're ready to get to work.`
+      ? `You are timer ${timerNumber}. Tell me when you're ready to work.`
       : phase === "feedback"
         ? taskFeedbackLine
       : `Timer ${timerNumber}, tell me when it is ${targetLabel}.`;
