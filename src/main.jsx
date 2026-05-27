@@ -104,7 +104,7 @@ function App() {
   const [rating, setRating] = useState(4);
   const [earnings, setEarnings] = useState(0);
   const [ratingFeedback, setRatingFeedback] = useState(null);
-  const [earningFeedback, setEarningFeedback] = useState(false);
+  const [earningFeedback, setEarningFeedback] = useState(null);
   const [speechEnabled, setSpeechEnabled] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isBlinking, setIsBlinking] = useState(false);
@@ -239,7 +239,7 @@ function App() {
     }
 
     const timeout = window.setTimeout(() => {
-      setEarningFeedback(false);
+      setEarningFeedback(null);
     }, 900);
 
     return () => window.clearTimeout(timeout);
@@ -260,9 +260,16 @@ function App() {
 
       if (isCorrect) {
         setEarnings((currentEarnings) => currentEarnings + 10);
-        setEarningFeedback(true);
+        setEarningFeedback("positive");
       } else {
-        setEarnings((currentEarnings) => Math.max(currentEarnings - 1, 0));
+        setEarnings((currentEarnings) => {
+          if (currentEarnings <= 0) {
+            return 0;
+          }
+
+          setEarningFeedback("negative");
+          return currentEarnings - 1;
+        });
       }
     }
 
@@ -297,14 +304,14 @@ function App() {
         </div>
 
         <div
-          className={`earning-display ${earningFeedback ? "earning-positive" : ""}`}
+          className={`earning-display ${earningFeedback ? `earning-${earningFeedback}` : ""}`}
           aria-label={`Earnings ${earnings} dollars`}
         >
           <div className="earning-amount">${earnings}</div>
           <div className="metric-label">earning</div>
           {earningFeedback ? (
             <div className="earning-burst" aria-hidden="true">
-              + $10
+              {earningFeedback === "positive" ? "+ $10" : "- $1"}
             </div>
           ) : null}
         </div>

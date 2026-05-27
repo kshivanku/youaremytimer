@@ -183,6 +183,11 @@ button {
   animation: rating-positive 780ms ease-out both;
 }
 
+.earning-display.earning-negative {
+  box-shadow: none;
+  animation: rating-negative 680ms ease-out both;
+}
+
 .stars {
   min-height: 34px;
   color: rgba(255, 255, 255, 0.96);
@@ -251,6 +256,13 @@ button {
     0 0 30px rgba(84, 225, 132, 0.2);
 }
 
+.earning-negative .earning-amount {
+  color: rgba(255, 58, 48, 0.98);
+  text-shadow:
+    0 0 14px rgba(255, 58, 48, 0.52),
+    0 0 28px rgba(255, 58, 48, 0.22);
+}
+
 .earning-burst {
   position: absolute;
   right: 10px;
@@ -262,6 +274,12 @@ button {
   white-space: nowrap;
   text-shadow: 0 0 16px rgba(84, 225, 132, 0.5);
   animation: burst-up 860ms ease-out both;
+}
+
+.earning-negative .earning-burst {
+  color: rgba(255, 58, 48, 0.96);
+  text-shadow: 0 0 16px rgba(255, 58, 48, 0.56);
+  animation-name: burst-down;
 }
 
 .metric-label {
