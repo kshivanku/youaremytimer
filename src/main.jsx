@@ -5,7 +5,6 @@ import eyesOpen from "../assets/eyes-open.png";
 import eyesShut from "../assets/eyes-shut.png";
 import skyLoop from "../assets/Sunny_cloudy_sky_loop.mp4";
 
-const openingLine = "You are a timer. Tell me when you're ready to work.";
 const humanVoiceHints = [
   "samantha",
   "daniel",
@@ -97,6 +96,7 @@ function chooseHumanVoice(voices) {
 }
 
 function App() {
+  const [timerNumber] = useState(() => getRandomSeconds(1000, 9999));
   const [phase, setPhase] = useState("opening");
   const [taskCount, setTaskCount] = useState(0);
   const [targetSeconds, setTargetSeconds] = useState(null);
@@ -111,7 +111,10 @@ function App() {
   const [voices, setVoices] = useState([]);
 
   const targetLabel = targetSeconds ? formatDuration(targetSeconds) : "";
-  const line = phase === "opening" ? openingLine : `Tell me when it is ${targetLabel}.`;
+  const line =
+    phase === "opening"
+      ? `You are timer ${timerNumber}. Tell me when you're ready to get to work.`
+      : `Timer ${timerNumber}, tell me when it is ${targetLabel}.`;
   const ready = phase !== "opening";
   const typedLine = useTypedText(line, ready ? 58 : 38);
   const isTyping = typedLine.length < line.length;
