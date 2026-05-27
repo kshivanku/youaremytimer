@@ -344,11 +344,11 @@ function App() {
         <div className="choices">
           {phase === "opening" ? (
             <button className="ready-button" type="button" onClick={beginTask}>
-              I'm ready.
+              I'm ready
             </button>
           ) : (
             <button className="ready-button time-button" type="button" onClick={beginTask}>
-              It's {targetLabel}.
+              It's {targetLabel}
             </button>
           )}
         </div>
