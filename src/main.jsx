@@ -28,6 +28,19 @@ const ratingLabels = {
   5: "exceeds"
 };
 
+const positiveFeedbackWords = [
+  "Exceptional",
+  "Outstanding",
+  "Excellent",
+  "Impressive",
+  "Brilliant",
+  "Superb",
+  "Remarkable",
+  "Splendid",
+  "Terrific",
+  "Magnificent"
+];
+
 function getRandomSeconds(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -53,6 +66,10 @@ function formatTimer(totalSeconds) {
   const seconds = totalSeconds % 60;
 
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+
+function choosePositiveFeedbackWord() {
+  return positiveFeedbackWords[Math.floor(Math.random() * positiveFeedbackWords.length)];
 }
 
 function useTypedText(text, speed = 42) {
@@ -375,7 +392,7 @@ function App() {
         });
       }
 
-      setTaskFeedbackLine(isCorrect ? "Good job" : "You can do better");
+      setTaskFeedbackLine(isCorrect ? choosePositiveFeedbackWord() : "You can do better");
       setPhase("feedback");
       return;
     }
