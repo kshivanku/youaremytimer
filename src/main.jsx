@@ -197,6 +197,7 @@ function App() {
   const [taskCount, setTaskCount] = useState(0);
   const [targetSeconds, setTargetSeconds] = useState(null);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [nextTaskIsShort, setNextTaskIsShort] = useState(false);
   const [rating, setRating] = useState(4);
   const [earnings, setEarnings] = useState(0);
   const [ratingFeedback, setRatingFeedback] = useState(null);
@@ -357,9 +358,10 @@ function App() {
   }, [isTyping, phase]);
 
   function startNextTask() {
-    const isEarlyTask = taskCount < 4;
-    setTargetSeconds(getRandomSeconds(5, isEarlyTask ? 10 : 30));
+    const maxSeconds = taskCount < 4 || nextTaskIsShort ? 10 : 30;
+    setTargetSeconds(getRandomSeconds(5, maxSeconds));
     setElapsedSeconds(0);
+    setNextTaskIsShort(false);
     setTaskCount((currentCount) => currentCount + 1);
     setSpeechEnabled(true);
     setPhase("timing");
@@ -393,6 +395,7 @@ function App() {
       }
 
       setTaskFeedbackLine(isCorrect ? choosePositiveFeedbackWord() : "You can do better");
+      setNextTaskIsShort(!isCorrect);
       setPhase("feedback");
       return;
     }
