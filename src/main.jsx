@@ -101,7 +101,7 @@ function App() {
   const [taskCount, setTaskCount] = useState(0);
   const [targetSeconds, setTargetSeconds] = useState(null);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
-  const [rating, setRating] = useState(5);
+  const [rating, setRating] = useState(4);
   const [earnings, setEarnings] = useState(0);
   const [ratingFeedback, setRatingFeedback] = useState(null);
   const [earningFeedback, setEarningFeedback] = useState(false);
