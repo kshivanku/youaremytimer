@@ -76,6 +76,41 @@ button {
   pointer-events: none;
 }
 
+.video-play-button {
+  position: absolute;
+  right: max(14px, env(safe-area-inset-right));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  border-radius: 50%;
+  color: transparent;
+  background: rgba(10, 14, 17, 0.54);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 10px 24px rgba(0, 0, 0, 0.36);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.video-play-button::before {
+  width: 0;
+  height: 0;
+  margin-left: 4px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 15px solid rgba(255, 255, 255, 0.94);
+  content: "";
+}
+
+.video-play-button:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 4px;
+}
+
 .ambient-grid {
   display: none;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 import eyesOpen from "../assets/eyes-open.png";
@@ -92,6 +92,85 @@ function chooseHumanVoice(voices) {
     englishVoices[0] ||
     voices[0] ||
     null
+  );
+}
+
+function BackgroundVideo() {
+  const videoRef = useRef(null);
+  const [needsGesture, setNeedsGesture] = useState(false);
+
+  function playVideo() {
+    const video = videoRef.current;
+
+    if (!video) {
+      return;
+    }
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+
+    const playAttempt = video.play();
+
+    if (playAttempt?.then) {
+      playAttempt
+        .then(() => setNeedsGesture(false))
+        .catch(() => setNeedsGesture(true));
+    } else {
+      setNeedsGesture(false);
+    }
+  }
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video) {
+      return undefined;
+    }
+
+    const retryPlay = () => playVideo();
+    const retryWhenVisible = () => {
+      if (!document.hidden) {
+        playVideo();
+      }
+    };
+
+    playVideo();
+    video.addEventListener("loadeddata", retryPlay);
+    video.addEventListener("canplay", retryPlay);
+    document.addEventListener("visibilitychange", retryWhenVisible);
+    window.addEventListener("touchstart", retryPlay, { passive: true });
+    window.addEventListener("pointerdown", retryPlay);
+
+    return () => {
+      video.removeEventListener("loadeddata", retryPlay);
+      video.removeEventListener("canplay", retryPlay);
+      document.removeEventListener("visibilitychange", retryWhenVisible);
+      window.removeEventListener("touchstart", retryPlay);
+      window.removeEventListener("pointerdown", retryPlay);
+    };
+  }, []);
+
+  return (
+    <>
+      <video
+        ref={videoRef}
+        className="sky-video"
+        src={skyLoop}
+        autoPlay
+        muted
+        defaultMuted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+      />
+      {needsGesture ? (
+        <button className="video-play-button" type="button" onClick={playVideo} aria-label="Play background motion">
+          Play
+        </button>
+      ) : null}
+    </>
   );
 }
 
@@ -283,7 +362,7 @@ function App() {
 
   return (
     <main className="timer-room" aria-label="AI agent interaction">
-      <video className="sky-video" src={skyLoop} autoPlay muted loop playsInline aria-hidden="true" />
+      <BackgroundVideo />
       <div className="ambient-grid" aria-hidden="true" />
 
       <div className="ritual-frame">
