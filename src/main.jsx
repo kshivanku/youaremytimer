@@ -304,7 +304,7 @@ function App() {
           ) : null}
         </div>
 
-        <svg className="frame-outline" viewBox="0 0 100 140" preserveAspectRatio="none" aria-hidden="true">
+        <svg className="frame-outline" viewBox="-2 -12 104 152" preserveAspectRatio="none" aria-hidden="true">
           <path className="frame-main" d="M0 34H14L50 0L86 34H100V140H0V34Z" />
           <path className="frame-inner" d="M5 39H17L50 8L83 39H95V135H5V39Z" />
           <path className="frame-echo" d="M20 34L50 6L80 34" />
